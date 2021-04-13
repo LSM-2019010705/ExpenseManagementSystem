@@ -12,8 +12,8 @@ public class MenuManager {
 			System.out.println("1. 계좌 추가"); //메뉴 목록들이다.
 			System.out.println("2. 계좌 삭제");
 			System.out.println("3. 계좌 편집");
-			System.out.println("4. 소비 목록");
-			System.out.println("5. 소비 보기");
+			System.out.println("4. 계좌 목록");
+			System.out.println("5. 계좌 보기");
 			System.out.println("6. Exit");
 			System.out.println("Select one number between 1~6");
 			num = input.nextInt(); //메뉴를 입력받는다
@@ -29,10 +29,10 @@ public class MenuManager {
 				accountmanager.editAccount();
 			}
 			else if (num == 4) {
-				accountmanager.listExpense();
+				accountmanager.listAccount();
 			}
 			else if (num == 5) {
-				accountmanager.viewExpense();
+				accountmanager.viewAccounts();
 			}
 		}
 	}
