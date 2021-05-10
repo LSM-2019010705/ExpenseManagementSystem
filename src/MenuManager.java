@@ -8,7 +8,7 @@ public class MenuManager {
 		
 		int num=-1;
 		while (num != 6) {
-			System.out.println("-----메뉴 번호를 선택하십시오.-----");
+			System.out.println("----- 메뉴 번호를 선택하십시오. -----");
 			System.out.println("1. 계좌 추가"); //메뉴 목록들이다.
 			System.out.println("2. 계좌 삭제");
 			System.out.println("3. 계좌 편집");
