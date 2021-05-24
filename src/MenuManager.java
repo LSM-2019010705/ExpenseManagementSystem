@@ -1,13 +1,27 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuManager {
+import log.EventLogger;
 
+public class MenuManager {
+	static EventLogger logger = new EventLogger("log.txt");
+	
 	public static void main(String[] args) {
+			
 		Scanner input = new Scanner(System.in);
-		AccountManager accountmanager = new AccountManager(input);
-		
+		AccountManager accountmanager = getObject("accountmanager.ser");
+		if(accountmanager == null) {
+			accountmanager = new AccountManager(input);
+		}
+					
 		selectMenu(input, accountmanager);
+		putObject(accountmanager, "accountmanager.ser");
 	}
 	
 	public static void selectMenu(Scanner input, AccountManager accountmanager) {
@@ -19,18 +33,23 @@ public class MenuManager {
 			switch(num) {
 				case 1:
 					accountmanager.addAccount();
+					logger.log("°èÁÂ Ãß°¡ µÊ");
 					break;
 				case 2:
 					accountmanager.deleteAccount(); 
+					logger.log("°èÁÂ »èÁ¦ µÊ");
 					break;
 				case 3:
 					accountmanager.editAccount();
+					logger.log("°èÁÂ ÆíÁý µÊ");
 					break;
 				case 4:
 					accountmanager.listAccount();
+					logger.log("°èÁÂ ¸®½ºÆ® µÊ");
 					break;
 				case 5:
 					accountmanager.viewAccounts();
+					logger.log("°èÁÂ º¸±â µÊ");
 					break;
 				default:
 					continue;
@@ -56,5 +75,46 @@ public class MenuManager {
 		System.out.println("6. Exit");
 		System.out.println("Select one number between 1~6: ");
 	}
+	
+	public static AccountManager getObject(String filename) {
+		AccountManager accountmanager = null;
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
 			
+			accountmanager = (AccountManager) in.readObject();
+			
+			in.close();
+			file.close();
+			
+		} catch (FileNotFoundException e) {
+			return accountmanager;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+		} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		}
+		
+		
+		return accountmanager;
+	}
+	
+	public static void putObject(AccountManager accountmanager, String filename) {
+		try {
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(accountmanager);
+			
+			out.close();
+			file.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}		
 }
