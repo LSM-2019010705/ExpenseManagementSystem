@@ -44,10 +44,6 @@ public class MenuManager {
 					logger.log("°èÁÂ ÆíÁı µÊ");
 					break;
 				case 4:
-					accountmanager.listAccount();
-					logger.log("°èÁÂ ¸®½ºÆ® µÊ");
-					break;
-				case 5:
 					accountmanager.viewAccounts();
 					logger.log("°èÁÂ º¸±â µÊ");
 					break;
@@ -71,9 +67,8 @@ public class MenuManager {
 		System.out.println("2. °èÁÂ »èÁ¦");
 		System.out.println("3. °èÁÂ ÆíÁı");
 		System.out.println("4. °èÁÂ ¸ñ·Ï");
-		System.out.println("5. °èÁÂ º¸±â");
-		System.out.println("6. Exit");
-		System.out.println("Select one number between 1~6: ");
+		System.out.println("5. Exit");
+		System.out.println("Select one number between 1~5: ");
 	}
 	
 	public static AccountManager getObject(String filename) {
