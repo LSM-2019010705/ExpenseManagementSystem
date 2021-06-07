@@ -1,3 +1,4 @@
+package Manager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,7 +8,8 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import log.EventLogger;
+import Log.EventLogger;
+import gui.WindowFrame;
 
 public class MenuManager {
 	static EventLogger logger = new EventLogger("log.txt");
@@ -19,14 +21,15 @@ public class MenuManager {
 		if(accountmanager == null) {
 			accountmanager = new AccountManager(input);
 		}
-					
+		
+		WindowFrame frame = new WindowFrame(accountmanager);			
 		selectMenu(input, accountmanager);
 		putObject(accountmanager, "accountmanager.ser");
 	}
 	
 	public static void selectMenu(Scanner input, AccountManager accountmanager) {
 		int num=-1;
-		while (num != 6) {
+		while (num != 5) {
 			try {
 			showMenu();
 			num = input.nextInt(); //메뉴를 입력받는다
