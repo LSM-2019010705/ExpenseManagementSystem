@@ -9,25 +9,21 @@ import gui.AccountAdder;
 import gui.AccountViewer;
 import gui.WindowFrame;
 
-public class ButtonAdd implements ActionListener {
+public class ButtonAddCancel implements ActionListener {
 	
 	WindowFrame frame;
 	
-	public ButtonAdd(WindowFrame frame) {
+	public ButtonAddCancel(WindowFrame frame) {
 		this.frame = frame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getAdder());
+		frame.getContentPane().add(frame.getMenu());
 		frame.revalidate();
 		frame.repaint();
-		
-//		JButton b = (JButton) e.getSource();
-//		frame.getAdder();
-//		AccountAdder add = frame.getAdder();
-//		frame.setupPanel(add);
+
 	}
 
 }

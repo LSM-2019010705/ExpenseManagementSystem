@@ -1,4 +1,5 @@
 package gui;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -6,12 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import Listeners.AccountAdderListener;
+import Listeners.ButtonAddCancel;
+import Manager.AccountManager;
+
 public class AccountAdder extends JPanel {
 
 	WindowFrame frame;
+	AccountManager accountmanager;
 	
-	public AccountAdder(WindowFrame frame) {
+	public AccountAdder(WindowFrame frame, AccountManager accountmanager) {
 		this.frame = frame;
+		this.accountmanager = accountmanager;
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
@@ -37,10 +44,17 @@ public class AccountAdder extends JPanel {
 		JLabel labelPhone = new JLabel("휴대전화: ", JLabel.TRAILING);
 		JTextField fieldPhone = new JTextField(10);
 		labelPhone.setLabelFor(fieldPhone);
+		
+		JButton saveButton = new JButton("저장");
+		saveButton.addActionListener(new AccountAdderListener(fieldAccount, fieldName, fieldEmail, fieldPhone, accountmanager));
+		JButton cancelButton = new JButton("취소");
+		cancelButton.addActionListener(new ButtonAddCancel(frame));
+		
 		panel.add(labelPhone);
 		panel.add(fieldPhone);
-		panel.add(new JButton("저장"));
-		panel.add(new JButton("취소"));
+		
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
 		this.add(panel);

@@ -24,6 +24,16 @@ public class AccountManager implements Serializable {
 		this.input = input;
 	}
 	
+	public void addAccount(String ID, String name, String email, String phone) {
+		AccountInput accountInput = new Normal(AccountType.Normal);
+		accountInput.getUserInput(input);
+		accounts.add(accountInput);
+	}
+	
+	public void addAccount(AccountInput accountInput) {
+		accounts.add(accountInput);
+	}
+	
 	public void addAccount() {
 		int type = 1;
 		AccountInput accountInput;
